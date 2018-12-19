@@ -26,7 +26,7 @@ module.exports = {
         if (selectedLink != null) {
             list[selectedLink].currentlyBooked = true;
             list[selectedLink].user = currentUser;
-            message = "Thanks, " + currentUser + "your zoom link is below, please don't forget to sign out when you're done /n" + list[selectedLink].URL;
+            message = "Thanks, " + currentUser + " your zoom link is below, please don't forget to sign out when you're done \n" + list[selectedLink].URL;
         } else {
             message = "It looks like I don't have any zoom links left, you can check who has the rooms booked with zoomlink booked"
         };
@@ -61,7 +61,7 @@ module.exports = {
         let message = '';
         for (i = 0; i < list.length; i++) {
             if (list[i].currentlyBooked == true) {
-                let addedString = "Zoom link " + list[i].name + " is currently booked out by " + list[i].user + "/n";
+                let addedString = "Zoom link " + list[i].name + " is currently booked out by " + list[i].user + "\n";
                 message = message + addedString;
             }
         }

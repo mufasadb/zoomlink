@@ -29,9 +29,11 @@ app.post('/webhook', (req, res) => {
   } else if (incText == 'booked'){
     let results = link.Booked(links);
     message = results.message 
+  } else if (incText == 'help'){
+    message = "You can start a zoom link with /zoomlink start \nYou can end a zoomlink with /zoomlink end\nYou can see who has the zoom links booked with /zoomlink booked"
   }
   else {
-    message = "I'm  sorry, " + incUser + " I don't understand that command"
+    message = "I'm  sorry, " + incUser + " I don't understand that command, try /zoomlink help for a list of commands"
   }
   let data = {
     text: message,
