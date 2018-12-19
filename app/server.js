@@ -22,17 +22,10 @@ app.post('/webhook', (req, res) => {
   if (incText == 'start') {
     let results = link.addBooking(links, incUser);
     message = results.message
-    links = resuts.list
-  }
+    links = results.list
   } else if (incText == 'end') {
     let results = link.removeBooking(links, incUser);
-    if (results[0][results[1]] != null) {
-      links = results[0];
-      let selectedLink = results[1];
-      message = "Thanks, " + incUser + " I've logged you out of the zoom link " + links[selectedLink].name
-    } else {
-      message = results[2];
-    }
+    message = results.message
   } else if (incText == 'booked'){
     let results = link.Booked(links);
     message = results.message 

@@ -23,47 +23,49 @@ module.exports = {
                 selectedLink = i
             };
         };
-        if (selectedLink == null) {
-            error = "It looks like I don't have any zoom links left, you can check who has the rooms booked with zoomlink booked"
-        } else {
+        if (selectedLink != null) {
             list[selectedLink].currentlyBooked = true;
             list[selectedLink].user = currentUser;
-        }
-        if (list[selectedLink] != null) {
             message = "Thanks, " + currentUser + "your zoom link is below, please don't forget to sign out when you're done /n" + list[selectedLink].URL;
-          } else {
-            message = message;
-          }
-        results = {
+        } else {
+            message = "It looks like I don't have any zoom links left, you can check who has the rooms booked with zoomlink booked"
+        };
+        let results = {
             message: message,
-            list: links
+            list: list
         }
-        return [list, selectedLink, error]
+        return results
     },
     removeBooking: function (list, currentUser) {
         let selectedLink = null
-        let error = '';
+        let message = '';
         for (i = 0; i < list.length; i++) {
             if (list[i].user == currentUser) {
                 selectedLink = i
             }
         }
         if (selectedLink == null) {
-            error = "It looks like you didn't have a zoom link booked at the moment, try booking one with zoomlink start"
+            message = "It looks like you didn't have a zoom link booked at the moment, try booking one with zoomlink start"
         } else {
             list[selectedLink].currentlyBooked = false;
             list[selectedLink].user = '';
+            message = "Thanks, " + currentUser + " I've logged you out of the zoom link " + list[selectedLink].name
         }
-        return [list, selectedLink, error]
+        let results = {
+            message: message,
+            list: list
+        }
+        return results
     },
-    Booked: function (list){
+    Booked: function (list) {
         let message = '';
-        for (i = 0; i < list.length; i++){
-            if(list[i].currentlyBooked == true){
+        for (i = 0; i < list.length; i++) {
+            if (list[i].currentlyBooked == true) {
                 let addedString = "Zoom link " + list[i].name + " is currently booked out by " + list[i].user + "/n";
                 message = message + addedString;
             }
         }
+console.log(message.length);
         let results = {
             message: message,
             list: list
